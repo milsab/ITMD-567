@@ -12,7 +12,9 @@ insert ignore into sec_user_groups(username, groupname) values('seller1','SELLER
 insert ignore into sec_user_groups(username, groupname) values('seller2','SELLER');
 
 insert into buyer(buyerid, birthday, firstname, lastname, gender, username) values(1, '1970-09-01', 'Alex', 'Wooden', 'male', 'buyer1');
+insert into buyer(buyerid, birthday, firstname, lastname, gender, username) values(2, '1980-09-01', 'Jack', 'Smith', 'male', 'buyer2');
 insert into seller(sellerid, birthday, firstname, lastname, gender, username) values(1, '1970-09-01', 'Chris', 'Hamilton', 'male', 'seller1');
+insert into seller(sellerid, birthday, firstname, lastname, gender, username) values(2, '1980-09-01', 'Richard', 'Rex', 'male', 'seller2');
 
 insert into food(id, date_cooked, description, name, seller_id) values(1, '2018-11-01', 'includes meat', 'Meat Ball', 1);
 insert into food(id, date_cooked, description, name, seller_id) values(2, '2018-11-02', 'includes Vegi', 'Vegi Burger', 1);

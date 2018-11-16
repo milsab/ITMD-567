@@ -28,7 +28,6 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
 
 /**
@@ -43,7 +42,7 @@ import javax.validation.constraints.PastOrPresent;
     ,
     @NamedQuery(
             name = "Offer.findByUsername",
-            query = "select o from Offer o where o.seller.user.userName = :username")
+            query = "select o from Offer o where o.seller.user.userName = :username"),
 })
 public class Offer {
 
@@ -89,7 +88,7 @@ public class Offer {
         this.createdDate = new Date();
     }
 
-    public Offer(String title, String description, Date createdDate, BigDecimal unitPrice, Integer quantity, String recipe, Seller seller) {
+    public Offer(String title, String description, Date createdDate, BigDecimal unitPrice, Integer quantity, String recipe) {
         this.title = title;
         this.description = description;
         this.createdDate = createdDate;
@@ -97,8 +96,6 @@ public class Offer {
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.recipe = recipe;
-        
-        this.seller = seller;
 
         if (this.createdDate == null) {            
             this.createdDate = new Date();

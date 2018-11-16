@@ -1,5 +1,5 @@
 :root {
-  --input-padding-x: .75rem;
+  /*--input-padding-x: .75rem;*/
   --input-padding-y: .75rem;
 }
 
@@ -84,14 +84,14 @@ body {
 
 /* Fallback for Edge
 -------------------------------------------------- */
-@supports (-ms-ime-align: auto) {
+/*@supports (-ms-ime-align: auto) {
   .form-label-group > label {
     display: none;
   }
   .form-label-group input::-ms-input-placeholder {
     color: #777;
   }
-}
+}*/
 
 /* Fallback for IE
 -------------------------------------------------- */

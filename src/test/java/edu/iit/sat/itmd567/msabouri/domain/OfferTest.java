@@ -34,7 +34,8 @@ public class OfferTest extends AbstractJPATest {
     @Test
     public void persitenceOfferTest() {
         Offer offer = new Offer("Offer Title", "Offer Description",
-                new GregorianCalendar(2017, 9, 23).getTime(), new BigDecimal("20.01"), 10, "");
+                new GregorianCalendar(2017, 9, 23).getTime(), 
+                new BigDecimal("20.01"), 10, "");
 
         tx.begin();
         em.persist(offer);
@@ -49,7 +50,7 @@ public class OfferTest extends AbstractJPATest {
                 new BigDecimal("1000.01"), 2, "");
 
         System.out.println(offer.toString());
-
+ 
         Set<ConstraintViolation<Offer>> constraintViolations = validator.validate(offer);
 
         for (ConstraintViolation<Offer> bad : constraintViolations) {

@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -26,7 +27,8 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class OfferService extends AbstractService<Offer> {
 
-    SellerService sellerSvc = new SellerService();
+    @EJB
+    private SellerService sellerSvc;
 
     /**
      *
@@ -37,17 +39,20 @@ public class OfferService extends AbstractService<Offer> {
 
     @Override
     public List<Offer> findAll() {
-        return getEntityManager().createNamedQuery("Offer.findAll", Offer.class).getResultList();
+        return getEntityManager()
+                .createNamedQuery("Offer.findAll", Offer.class)
+                .getResultList();
     }
 
     public List<Offer> findByUserName(String username) {
-        return getEntityManager().createNamedQuery("Offer.findByUsername", Offer.class).setParameter("username", username).getResultList();
+        return getEntityManager()
+                .createNamedQuery("Offer.findByUsername", Offer.class)
+                .setParameter("username", username)
+                .getResultList();
     }
-
     
     public void create(Offer offer, String username) {
-//        Seller seller = sellerSvc.findIdByUserName(username);
-        Seller seller = new Seller("milad", "milad", "ms", new Date());
+        Seller seller = sellerSvc.findByUserName(username);
         offer.setSeller(seller);
         super.create(offer);
     }
