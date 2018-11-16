@@ -1,0 +1,91 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package edu.iit.sat.itmd567.msabouri.domain;
+
+import edu.iit.sat.itmd567.msabouri.domain.OrderFood;
+import edu.iit.sat.itmd567.msabouri.domain.Buyer;
+import java.math.BigDecimal;
+import java.util.GregorianCalendar;
+import java.util.Set;
+import javax.validation.ConstraintViolation;
+import org.junit.After;
+import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ *
+ * @author Milad
+ */
+public class BuyerTest extends AbstractJPATest{
+    @Before
+    public void beforeEachTest() {
+        super.beforeEachTest();
+    }
+
+    @After
+    public void afterEachTest() {
+
+        super.afterEachTest();
+    }
+    
+    @Test
+    public void persitenceSellerTest(){
+        Buyer buyer = new Buyer("Nas", "Gha", "F", 
+                new GregorianCalendar(2017, 9, 23).getTime());
+
+        OrderFood order = new OrderFood(
+                new GregorianCalendar(2017, 9, 23).getTime(), 2, new BigDecimal("20.00"));
+        
+        order.setBuyer(buyer);
+        
+        tx.begin();
+        em.persist(buyer);
+        em.persist(order);
+        tx.commit();
+        
+        Long order_id = order.getOrderId();
+        assertNotNull("Persistence of buyer should return buyerId", buyer.getBuyerId());
+        Assert.assertEquals("Retrive buyer's name correctly", "Nas", buyer.getFirstName());
+        
+        OrderFood o = em.find(OrderFood.class, order_id);
+        Assert.assertEquals("buyer assigned to the order correctly", "Nas", o.getBuyer().getFirstName());
+                
+    }
+    
+    @Test
+    public void FirstNameIsBlank(){
+        Buyer buyer = new Buyer(" ", "abc", "mail", 
+                new GregorianCalendar(2017, 9, 23).getTime());
+        System.out.println(buyer.toString());
+        
+        Set<ConstraintViolation<Buyer>> constraintViolations = validator.validate(buyer);
+        assertEquals(1, constraintViolations.size());
+        
+        assertEquals("must not be blank", constraintViolations.iterator().next().getMessage());
+        
+        for(ConstraintViolation<Buyer> bad : constraintViolations){
+            System.out.println(bad.toString() + " " + bad.getPropertyPath() + " " + bad.getMessage());
+        }
+    }
+    @Test
+    public void LastNameIsBlank(){
+        Buyer buyer = new Buyer("abc", " ", "mail", 
+                new GregorianCalendar(2017, 9, 23).getTime());
+        System.out.println(buyer.toString());
+        
+        Set<ConstraintViolation<Buyer>> constraintViolations = validator.validate(buyer);
+        assertEquals(1, constraintViolations.size());
+        
+        assertEquals("must not be blank", constraintViolations.iterator().next().getMessage());
+        
+        for(ConstraintViolation<Buyer> bad : constraintViolations){
+            System.out.println(bad.toString() + " " + bad.getPropertyPath() + " " + bad.getMessage());
+        }
+    }
+}
