@@ -20,6 +20,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -38,7 +39,10 @@ import javax.validation.constraints.PastOrPresent;
 @NamedQueries({
     @NamedQuery(
             name = "Offer.findAll",
-            query = "select o from Offer o")
+            query = "select o from Offer o"),
+    @NamedQuery(
+            name = "Offer.findByUsername",
+            query = "select o from Offer o where o.seller.user.userName = :username")
 })
 public class Offer {
 
@@ -71,6 +75,11 @@ public class Offer {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "food_offer", joinColumns = @JoinColumn(name = "offer_id"), inverseJoinColumns = @JoinColumn(name = "food_id"))
     private List<Food> foods = new ArrayList<>();
+    
+    
+    @ManyToOne
+    @JoinColumn(name = "seller_id")
+    private Seller seller;
 
     // </editor-fold>
     
@@ -194,4 +203,12 @@ public class Offer {
     }
     
     // <editor-fold>
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
+    }
 }

@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.iit.sat.itmd4515.msabouri</groupId>
-    <artifactId>msabouri-fp</artifactId>
+    <artifactId>MealSharingV2</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>msabouri-fp</name>
+    <name>MealSharingV2</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>

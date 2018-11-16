@@ -8,6 +8,7 @@ package edu.iit.sat.itmd4515.msabouri.service;
 import edu.iit.sat.itmd4515.msabouri.domain.Offer;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -15,58 +16,24 @@ import javax.persistence.PersistenceContext;
  *
  * @author Milad
  */
+@Named
 @Stateless
-public class OfferService {
-
-    @PersistenceContext(unitName = "itmd4515PU")
-    private EntityManager em;
+public class OfferService extends AbstractService<Offer>{
 
     /**
      *
      */
     public OfferService() {
+        super(Offer.class);
     }
 
-    /**
-     *
-     * @param offer the offer that you want to create in persistence unit
-     */
-    public void create(Offer offer) {
-        em.persist(offer);
-    }
-
-    /**
-     *
-     * @param offer the offer that you want to update in persistence unit
-     */
-    public void update(Offer offer) {
-        em.merge(offer);
-    }
-
-    /**
-     *
-     * @param offer     the offer that you want to remove
-     */
-    public void remove(Offer offer) {
-        em.remove(em.merge(offer));
-    }
-
-    /**
-     *
-     * @param id    The id for the food to find the food
-     * @return
-     */
-    public Offer findById(Long id) {
-        return em.find(Offer.class, id);
-    }
-
-    /**
-     *  Find All Offers
-     *
-     * @return  Al Offers
-     */
+    @Override
     public List<Offer> findAll() {
-        return em.createNamedQuery("Offer.findAll", Offer.class).getResultList();
+        return getEntityManager().createNamedQuery("Offer.findAll", Offer.class).getResultList();
     }
-
+    
+    public List<Offer> findByUserName(String username){
+        
+        return getEntityManager().createNamedQuery("Offer.findByUsername", Offer.class).setParameter("username", username).getResultList();
+    }
 }

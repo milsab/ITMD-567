@@ -59,6 +59,9 @@ public class Seller {
     @OneToOne
     @JoinColumn(name = "USERNAME")
     private User user;
+    
+    @OneToMany(mappedBy = "seller")
+    private List<Offer> offers = new ArrayList<>();
 
     public Seller() {
     }
@@ -180,6 +183,14 @@ public class Seller {
     }
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Offer> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(List<Offer> offers) {
+        this.offers = offers;
     }
 
 }
