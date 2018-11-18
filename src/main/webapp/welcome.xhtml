@@ -1,14 +1,25 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./WEB-INF/template/portalTemplate.xhtml">
+                template="./WEB-INF/template/portalTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html">
 
     <ui:define name="title">
-        Welcome Home Page
+        
     </ui:define>
 
     <ui:define name="content">
-        Welcome to the "Tahdig" Home-Cooked Meal Sharing Home Page 
+        <section class="text-center">
+                <div class="container">
+                    <h1 id="HomePageTitle1" class="jumbotron-heading">Tahdig</h1>
+                    <p id="HomePageTitle2" class="lead text-muted">Home-Cooked Meal Sharing</p>
+                    <p>
+                        <a href="./buyer/welcome.xhtml" class="btn btn-primary my-2">Make an Offer</a>
+                        <a href="./seller" class="btn btn-success my-2">Place an Order</a>
+                    </p>
+                </div>
+        </section>
     </ui:define>
 
 </ui:composition>

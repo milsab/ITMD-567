@@ -66,7 +66,6 @@ public class Food extends AbstractIdentifiedEntity {
     @ManyToMany(mappedBy = "foods")
     private List<Offer> offers = new ArrayList<>();
     
-    
 //    @NotNull
     @ManyToOne
     @JoinColumn(name = "seller_id")

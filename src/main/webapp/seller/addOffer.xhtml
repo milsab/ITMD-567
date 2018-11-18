@@ -11,15 +11,15 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:form>
+        <h:form enctype="multipart/form-data"  prependId="false">
             <h:outputLabel for="title">Title:</h:outputLabel>
             <h:inputText value="#{offerController.offer.title}" class="form-control" id="title"></h:inputText>
             <br/>
             <h:outputLabel for="description">Description:</h:outputLabel>
-            <h:inputText value="#{offerController.offer.description}" class="form-control" id="description"></h:inputText>
+            <h:inputTextarea value="#{offerController.offer.description}" class="form-control" id="description"></h:inputTextarea>
             <br/>
             <h:outputLabel for="recipe">Recipe:</h:outputLabel>
-            <h:inputText value="#{offerController.offer.recipe}" class="form-control" id="recipe"></h:inputText>
+            <h:inputTextarea value="#{offerController.offer.recipe}" class="form-control" id="recipe"></h:inputTextarea>
             <br/>
             <h:outputLabel for="quantity">Quantity:</h:outputLabel>
             <h:inputText value="#{offerController.offer.quantity}" class="form-control" id="quantity"></h:inputText>
@@ -28,6 +28,7 @@
             <h:inputText value="#{offerController.offer.unitPrice}" class="form-control" id="price"></h:inputText>
             <br/>
             <br/>
+            
             <h:commandButton action="#{offerService.create(offerController.offer, loginController.remoteUser)}"                             
                              class="btn btn-primary btn-lg btn-block" 
                              value="Submit">

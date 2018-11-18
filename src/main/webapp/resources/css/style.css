@@ -4,7 +4,8 @@
 */
 
 body {
-  padding-top: 5rem;
+  margin: 0px;
+  padding: 0px;
 }
 
 .starter-template {
@@ -18,3 +19,29 @@ body {
     border-radius: 5px;
     border: 1px solid white;
 }
+
+#carouselExampleFade img{
+    height: 400px;
+}
+
+#HomePageTitle1 {
+    font-family: 'Pattaya', sans-serif;
+    font-size: 6em;
+    
+}
+
+#HomePageTitle2{
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2em;
+}
+
+#smallLogoBanner{
+    font-family: 'Pattaya', sans-serif;
+}
+
+/*imortant*/
+.uiFragment{
+    margin: 0px;
+}
+
+
