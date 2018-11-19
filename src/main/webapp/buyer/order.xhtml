@@ -1,12 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../WEB-INF/template/portalTemplate.xhtml"
+                template="./../WEB-INF/template/FormsTemplate.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml">
 
     <ui:define name="title">
-        List of my previous orders
+        <br/>
+        <br/>
+        My Orders
     </ui:define>
 
     <ui:define name="content">
@@ -29,17 +32,6 @@
                 <h:outputText value="#{order.price}"/>
                 <f:facet name="header"><h:outputText value="Price"/></f:facet>
             </h:column>
-<!--            <h:column>
-                <h:outputText value="#{discJockeyController.getShowDiscJockeysFormatted(show)}"/>
-                <f:facet name="header"><h:outputText value="DJs"/></f:facet>
-            </h:column>
-            <h:column>
-                <h:form>
-                    <h:commandLink action="#{discJockeyController.doViewShow(show)}" value="View "/>
-                    <h:commandLink action="#{discJockeyController.doEditShow(show)}" value="Edit "/>
-                    <h:commandLink action="#{discJockeyController.doDeleteShow()}" value="Delete"/>
-                </h:form>
-            </h:column>-->
         </h:dataTable>
     </ui:define>
 

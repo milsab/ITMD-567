@@ -73,4 +73,9 @@ public class FoodService extends AbstractService<Food> {
         return getEntityManager().createNamedQuery("Food.findAll", Food.class).getResultList();
     }
 
+    @Override
+    public List<Food> findAll(String s) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

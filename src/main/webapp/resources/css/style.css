@@ -6,12 +6,13 @@
 body {
   margin: 0px;
   padding: 0px;
+  /*background-color: yellow;*/
 }
 
-.starter-template {
+/*.starter-template {
   padding: 3rem 1.5rem;
   text-align: center;
-}
+}*/
 
 .fa-utensils{
     padding: 3px;
@@ -42,6 +43,15 @@ body {
 /*imortant*/
 .uiFragment{
     margin: 0px;
+}
+
+#MyMain.container{
+    /*background-color: red;*/
+    width: 100%;
+    /*width: 2000px;*/
+    /*position:fixed;*/
+    /*margin: 0px;*/
+    padding: 0px;
 }
 
 

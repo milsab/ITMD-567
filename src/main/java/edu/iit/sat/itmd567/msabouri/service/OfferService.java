@@ -38,7 +38,7 @@ public class OfferService extends AbstractService<Offer> {
     }
 
     @Override
-    public List<Offer> findAll() {
+    public List<Offer> findAll(String s) {
         return getEntityManager()
                 .createNamedQuery("Offer.findAll", Offer.class)
                 .getResultList();
@@ -55,6 +55,11 @@ public class OfferService extends AbstractService<Offer> {
         Seller seller = sellerSvc.findByUserName(username);
         offer.setSeller(seller);
         super.create(offer);
+    }
+
+    @Override
+    public List<Offer> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

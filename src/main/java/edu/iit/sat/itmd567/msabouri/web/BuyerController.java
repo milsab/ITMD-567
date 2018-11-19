@@ -6,6 +6,7 @@
 package edu.iit.sat.itmd567.msabouri.web;
 
 import edu.iit.sat.itmd567.msabouri.domain.Buyer;
+import edu.iit.sat.itmd567.msabouri.domain.Offer;
 import edu.iit.sat.itmd567.msabouri.domain.OrderFood;
 import edu.iit.sat.itmd567.msabouri.service.BuyerService;
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class BuyerController extends AbstractController{
 //    }
     
     // action methods here
-//    public String doViewShow(RadioShow show){
+//    public String doAddOrder(Offer offer){
 //        this.radioShow = show;
 //        LOG.info("We are about to view the information for radio show " + radioShow.toString());
 //        return "/dj/viewShow";

@@ -1,39 +1,31 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../WEB-INF/template/FormsTemplate.xhtml"
+                template="./../WEB-INF/template/portalTemplate.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns="http://www.w3.org/1999/xhtml">
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
-        <br/>
-        <br/>
         Make your Offer
     </ui:define>
 
     <ui:define name="content">
-         <h:form enctype="multipart/form-data"  prependId="false">
+        <h:form enctype="multipart/form-data"  prependId="false">
             <h:outputLabel for="title">Title:</h:outputLabel>
             <h:inputText value="#{offerController.offer.title}" class="form-control" id="title"></h:inputText>
-            <h:message for="title" errorClass="text-danger"/>
             <br/>
             <h:outputLabel for="description">Description:</h:outputLabel>
             <h:inputTextarea value="#{offerController.offer.description}" class="form-control" id="description"></h:inputTextarea>
-            <h:message for="description" errorClass="text-danger"/>
             <br/>
             <h:outputLabel for="recipe">Recipe:</h:outputLabel>
             <h:inputTextarea value="#{offerController.offer.recipe}" class="form-control" id="recipe"></h:inputTextarea>
-            <h:message for="recipe" errorClass="text-danger"/>
             <br/>
             <h:outputLabel for="quantity">Quantity:</h:outputLabel>
             <h:inputText value="#{offerController.offer.quantity}" class="form-control" id="quantity"></h:inputText>
-            <h:message for="quantity" errorClass="text-danger"/>
             <br/>
             <h:outputLabel for="price">Unit Price:</h:outputLabel>
             <h:inputText value="#{offerController.offer.unitPrice}" class="form-control" id="price"></h:inputText>
-            <h:message for="price" errorClass="text-danger"/>
             <br/>
             <br/>
             

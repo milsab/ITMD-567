@@ -39,5 +39,10 @@ public class SellerService extends AbstractService<Seller> {
     public Seller findIdByUserName(String username){
         return getEntityManager().createNamedQuery("Seller.findIdByUsername", Seller.class).setParameter("username", username).getSingleResult();
     }
+
+    @Override
+    public List<Seller> findAll(String s) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

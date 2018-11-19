@@ -46,4 +46,5 @@ public abstract class AbstractService<T> {
     }
     
     public abstract List<T> findAll();
+    public abstract List<T> findAll(String s);
 }
