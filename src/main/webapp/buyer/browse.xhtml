@@ -37,13 +37,22 @@
             </h:column>
             <h:column>
                 <h:outputText value="#{offer.quantity}"/>
-                <f:facet name="header"><h:outputText value="Quantity"/></f:facet>
+                <f:facet name="header"><h:outputText value="Available Quantity"/></f:facet>
             </h:column>
-<!--            <h:column>
+            
+            <h:column>
                 <h:form>
-                    <h:commandLink action="#{buyerController}" value="Order"/>
+                    <h:inputText  value="#{orderController.order.quantity}" class="form-control qyt" id="qyt"></h:inputText>
+                    <f:facet name="header"><h:outputText value="Quantity"/></f:facet>
+                    <c:set var="qtyy" value="#{orderController.order.quantity}"></c:set>
                 </h:form>
-            </h:column>-->
+                
+            </h:column>
+            <h:column>
+                <h:form>
+                    <h:commandLink action="#{buyerController.doAddOrder(offer, qtyy)}" class="btn btn-primary" value="Order"/>                    
+                </h:form>
+            </h:column>
 
         </h:dataTable>
     </ui:define>

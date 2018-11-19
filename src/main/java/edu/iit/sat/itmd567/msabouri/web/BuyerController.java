@@ -9,7 +9,10 @@ import edu.iit.sat.itmd567.msabouri.domain.Buyer;
 import edu.iit.sat.itmd567.msabouri.domain.Offer;
 import edu.iit.sat.itmd567.msabouri.domain.OrderFood;
 import edu.iit.sat.itmd567.msabouri.service.BuyerService;
+import edu.iit.sat.itmd567.msabouri.service.OrderService;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -33,6 +36,9 @@ public class BuyerController extends AbstractController{
     
     @EJB
     private BuyerService buyerSvc;
+    
+    @EJB
+    private OrderService orderSvc;
 
     @Inject
     private LoginController loginController;
@@ -55,11 +61,21 @@ public class BuyerController extends AbstractController{
 //    }
     
     // action methods here
-//    public String doAddOrder(Offer offer){
-//        this.radioShow = show;
-//        LOG.info("We are about to view the information for radio show " + radioShow.toString());
-//        return "/dj/viewShow";
-//    }
+    public void doAddOrder(Offer offer, Integer qyt){
+        BigDecimal price = 
+                new BigDecimal(qyt * (offer.getUnitPrice().intValue()));
+        
+        this.order.setOrderDate(new Date());
+        this.order.setBuyer(buyer);
+        this.order.setOffer(offer);
+        this.order.setPrice(price);
+        this.order.setQuantity(qyt);
+        
+        
+        orderSvc.create(order);
+        
+        
+    }
 
     /**
      * Get the value of buyer
