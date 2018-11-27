@@ -14,7 +14,7 @@
     </ui:define>
 
     <ui:define name="content">
-         <h:form enctype="multipart/form-data"  prependId="false">
+        <h:form enctype="multipart/form-data"  prependId="false">
             <h:outputLabel for="title">Title:</h:outputLabel>
             <h:inputText value="#{offerController.offer.title}" class="form-control" id="title"></h:inputText>
             <h:message for="title" errorClass="text-danger"/>
@@ -35,10 +35,21 @@
             <h:inputText value="#{offerController.offer.unitPrice}" class="form-control" id="price"></h:inputText>
             <h:message for="price" errorClass="text-danger"/>
             <br/>
+
+            <h:outputLabel for="inputGroupFile01">Image of the meal:</h:outputLabel>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Upload Image</span>
+                </div>
+                <div class="custom-file">
+
+                    <h:inputFile value="#{offerService.uploadedFile}" class="custom-file-input" id="inputGroupFile01"></h:inputFile>
+                    <h:message for="inputGroupFile01" errorClass="text-danger"/>
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+            </div>
+
             <br/>
-            <h:inputFile value="#{offerService.uploadedFile}"></h:inputFile>
-            <h:commandButton value="Save" type="submit" action="#{fileUploadController.saveFile}" style="color: red;"></h:commandButton>
-            
             <h:commandButton action="#{offerService.create(offerController.offer, loginController.remoteUser)}"                             
                              class="btn btn-primary btn-lg btn-block" 
                              value="Submit">

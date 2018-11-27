@@ -5,6 +5,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
                 xmlns="http://www.w3.org/1999/xhtml">
 
     <ui:define name="title">
@@ -55,6 +56,30 @@
             </h:column>
 
         </h:dataTable>
+        
+        <p:accordionPanel value="#{offerService.findAll('s')}"
+                          var ="offer">
+            <p:tab title="#{offer.title}">
+                <h:outputLabel>ID:</h:outputLabel>
+                <h:outputText value="#{offer.offerId}"/>
+                <br/>
+                <h:outputLabel>Description:</h:outputLabel>
+                <h:outputText value="#{offer.description}"/>
+                <br/>
+                <h:outputLabel>Created Date:</h:outputLabel>
+                <h:outputText value="#{offer.createdDate}">
+                            <f:convertDateTime type="date" dateStyle="long"/>
+                </h:outputText>
+                <br/>
+                <h:outputLabel>Unit Price:</h:outputLabel>
+                <h:outputText value="#{offer.unitPrice}"/>
+                <br/>
+                <h:outputLabel>Quantity:</h:outputLabel>
+                <h:outputText value="#{offer.quantity}"/>
+                <br/>
+                <p:graphicImage library="images" name="tahdig.jpeg"/>  
+            </p:tab>
+        </p:accordionPanel>
     </ui:define>
 
 </ui:composition>
