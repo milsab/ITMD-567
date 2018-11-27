@@ -36,6 +36,8 @@
             <h:message for="price" errorClass="text-danger"/>
             <br/>
             <br/>
+            <h:inputFile value="#{offerService.uploadedFile}"></h:inputFile>
+            <h:commandButton value="Save" type="submit" action="#{fileUploadController.saveFile}" style="color: red;"></h:commandButton>
             
             <h:commandButton action="#{offerService.create(offerController.offer, loginController.remoteUser)}"                             
                              class="btn btn-primary btn-lg btn-block" 

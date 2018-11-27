@@ -63,7 +63,7 @@ public class BuyerController extends AbstractController{
     // action methods here
     public void doAddOrder(Offer offer, Integer qyt){
         BigDecimal price = 
-                new BigDecimal(qyt * (offer.getUnitPrice().intValue()));
+                new BigDecimal(1 * (offer.getUnitPrice().intValue()));
         
         this.order.setOrderDate(new Date());
         this.order.setBuyer(buyer);

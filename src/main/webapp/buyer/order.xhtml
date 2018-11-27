@@ -25,9 +25,13 @@
                 <f:facet name="header"><h:outputText value="Date"/></f:facet>
             </h:column>
             <h:column>
+                <h:outputText value="#{order.offer.title}"/>
+                <f:facet name="header"><h:outputText value="Title"/></f:facet>
+            </h:column>
+<!--            <h:column>
                 <h:outputText value="#{order.quantity}"/>
                 <f:facet name="header"><h:outputText value="Quantity"/></f:facet>
-            </h:column>
+            </h:column>-->
             <h:column>
                 <h:outputText value="#{order.price}"/>
                 <f:facet name="header"><h:outputText value="Price"/></f:facet>

@@ -7,17 +7,12 @@ package edu.iit.sat.itmd567.msabouri.service;
 
 import edu.iit.sat.itmd567.msabouri.domain.Offer;
 import edu.iit.sat.itmd567.msabouri.domain.Seller;
-import edu.iit.sat.itmd567.msabouri.web.LoginController;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import edu.iit.sat.itmd567.msabouri.web.FileUploadController;
 import java.util.List;
-import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -30,6 +25,7 @@ public class OfferService extends AbstractService<Offer> {
     @EJB
     private SellerService sellerSvc;
 
+   private Part uploadedFile;
     /**
      *
      */
@@ -55,11 +51,24 @@ public class OfferService extends AbstractService<Offer> {
         Seller seller = sellerSvc.findByUserName(username);
         offer.setSeller(seller);
         super.create(offer);
+        
+        String filename = Long.toString(offer.getOfferId());
+        FileUploadController imageFile = new FileUploadController();
+        imageFile.setUploadedFile(uploadedFile);
+        imageFile.saveFile(filename);
     }
 
     @Override
     public List<Offer> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Part getUploadedFile() {
+        return uploadedFile;
+    }
+
+    public void setUploadedFile(Part uploadedFile) {
+        this.uploadedFile = uploadedFile;
     }
 
 }
