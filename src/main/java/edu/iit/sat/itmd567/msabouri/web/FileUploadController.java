@@ -45,10 +45,10 @@ public class FileUploadController extends AbstractController implements Serializ
             String extension = "." + initName.substring(initName.lastIndexOf(".") + 1);
             fileName = "i" + fileName; //uploadedFile.getSubmittedFileName();
             Files.copy(input, 
-                    new File(path + File.separator + "WEB-INF"
-                    + File.separator + "uploadedimages" 
-                    + File.separator, fileName
-                    + extension).toPath());
+                    new File(path + File.separator + "resources"
+                    + File.separator + "images" 
+                    + File.separator, initName).toPath());
+//                    + extension).toPath());
         } catch (IOException e) {
             e.printStackTrace();
         }

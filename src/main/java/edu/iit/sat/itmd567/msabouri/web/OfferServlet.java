@@ -101,7 +101,7 @@ public class OfferServlet extends HttpServlet {
             String recipe = request.getParameter("recipe");
             Integer quantity = Integer.parseInt(request.getParameter("quantity"));
 
-            Offer offer = new Offer(title, description, new Date(), new BigDecimal(price), quantity, recipe);
+            Offer offer = new Offer(title, description, new Date(), new BigDecimal(price), quantity, recipe, "");
             LOG.info(offer.toString());
 
             Set<ConstraintViolation<Offer>> constraintViolations = validator.validate(offer);

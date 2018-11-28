@@ -81,6 +81,9 @@ public class Offer {
     
     
     private String recipe;
+    
+    @Column(name = "image_file")
+    private String imageFile;
 
     
     // </editor-fold>
@@ -88,7 +91,7 @@ public class Offer {
         this.createdDate = new Date();
     }
 
-    public Offer(String title, String description, Date createdDate, BigDecimal unitPrice, Integer quantity, String recipe) {
+    public Offer(String title, String description, Date createdDate, BigDecimal unitPrice, Integer quantity, String recipe, String imageFile) {
         this.title = title;
         this.description = description;
         this.createdDate = createdDate;
@@ -96,6 +99,7 @@ public class Offer {
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.recipe = recipe;
+        this.imageFile = imageFile;
 
         if (this.createdDate == null) {            
             this.createdDate = new Date();
@@ -226,5 +230,13 @@ public class Offer {
 
     public void setRecipe(String recipe) {
         this.recipe = recipe;
+    }
+
+    public String getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(String imageFile) {
+        this.imageFile = imageFile;
     }
 }

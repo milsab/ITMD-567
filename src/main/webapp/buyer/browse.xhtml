@@ -40,44 +40,52 @@
                 <h:outputText value="#{offer.quantity}"/>
                 <f:facet name="header"><h:outputText value="Available Quantity"/></f:facet>
             </h:column>
-            
+
             <h:column>
                 <h:form>
-                    <h:inputText  value="#{orderController.order.quantity}" class="form-control qyt" id="qyt"></h:inputText>
+                    <h:inputText  value="#{buyerController.qty}" 
+                                  binding="#{qyt}"
+                                  class="form-control qyt" id="qyt"></h:inputText>
                     <f:facet name="header"><h:outputText value="Quantity"/></f:facet>
                     <c:set var="qtyy" value="#{orderController.order.quantity}"></c:set>
                 </h:form>
-                
+
             </h:column>
             <h:column>
                 <h:form>
-                    <h:commandLink action="#{buyerController.doAddOrder(offer, qtyy)}" class="btn btn-primary" value="Order"/>                    
+                    <h:commandLink action="#{buyerController.doAddOrder(offer)}" class="btn btn-primary" value="Order"/>                    
                 </h:form>
             </h:column>
 
         </h:dataTable>
-        
+
         <p:accordionPanel value="#{offerService.findAll('s')}"
                           var ="offer">
             <p:tab title="#{offer.title}">
-                <h:outputLabel>ID:</h:outputLabel>
+                <h:graphicImage library="images" name="#{offer.imageFile}" class="offerImage"/>  
+                <h:outputLabel class="offerLabels">ID:&nbsp;</h:outputLabel>
                 <h:outputText value="#{offer.offerId}"/>
                 <br/>
-                <h:outputLabel>Description:</h:outputLabel>
+                <h:outputLabel class="offerLabels">Description:&nbsp;</h:outputLabel>
                 <h:outputText value="#{offer.description}"/>
                 <br/>
-                <h:outputLabel>Created Date:</h:outputLabel>
+                <h:outputLabel class="offerLabels">Created Date:&nbsp;</h:outputLabel>
                 <h:outputText value="#{offer.createdDate}">
-                            <f:convertDateTime type="date" dateStyle="long"/>
+                    <f:convertDateTime type="date" dateStyle="long"/>
                 </h:outputText>
                 <br/>
-                <h:outputLabel>Unit Price:</h:outputLabel>
+                <h:outputLabel class="offerLabels">Unit Price:&nbsp;</h:outputLabel>
                 <h:outputText value="#{offer.unitPrice}"/>
                 <br/>
-                <h:outputLabel>Quantity:</h:outputLabel>
+                <h:outputLabel class="offerLabels">Quantity:&nbsp;</h:outputLabel>
                 <h:outputText value="#{offer.quantity}"/>
+                
+                <h:outputLabel for="qty">Qty</h:outputLabel>
+                <h:inputText value="#{offerController.offer.recipe}" class="form-control" id="qty"></h:inputText>
+                <h:message for="recipe" errorClass="text-danger"/>
                 <br/>
-                <p:graphicImage library="images" name="tahdig.jpeg"/>  
+                
+
             </p:tab>
         </p:accordionPanel>
     </ui:define>

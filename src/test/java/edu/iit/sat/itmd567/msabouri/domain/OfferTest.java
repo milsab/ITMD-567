@@ -35,7 +35,7 @@ public class OfferTest extends AbstractJPATest {
     public void persitenceOfferTest() {
         Offer offer = new Offer("Offer Title", "Offer Description",
                 new GregorianCalendar(2017, 9, 23).getTime(), 
-                new BigDecimal("20.01"), 10, "");
+                new BigDecimal("20.01"), 10, "", "");
 
         tx.begin();
         em.persist(offer);
@@ -47,7 +47,7 @@ public class OfferTest extends AbstractJPATest {
         
         Offer offer = new Offer("title", "description",
                 new GregorianCalendar(2018, 8, 23).getTime(),
-                new BigDecimal("1000.01"), 2, "");
+                new BigDecimal("1000.01"), 2, "", "");
 
         System.out.println(offer.toString());
  
@@ -66,7 +66,7 @@ public class OfferTest extends AbstractJPATest {
     public void unitPriceAcceptMinZeroTest() {
         Offer offer = new Offer("title", "description",
                 new GregorianCalendar(2018, 8, 23).getTime(),
-                new BigDecimal("-1"), 2, "");
+                new BigDecimal("-1"), 2, "", "");
 
         System.out.println(offer.toString());
 
@@ -85,7 +85,7 @@ public class OfferTest extends AbstractJPATest {
     public void createdDateMustBePastOrPresentTest() {
         Offer offer = new Offer("title", "description",
                 new GregorianCalendar(2019, 9, 8).getTime(),
-                new BigDecimal("10.00"), 2, "");
+                new BigDecimal("10.00"), 2, "", "");
 
         System.out.println(offer.toString());
 

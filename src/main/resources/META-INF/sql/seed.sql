@@ -19,9 +19,9 @@ insert into seller(sellerid, birthday, firstname, lastname, gender, username) va
 insert into food(id, date_cooked, description, name, seller_id) values(1, '2018-11-01', 'includes meat', 'Meat Ball', 1);
 insert into food(id, date_cooked, description, name, seller_id) values(2, '2018-11-02', 'includes Vegi', 'Vegi Burger', 1);
 
-insert into offer(offer_id, createddate, description, quantity, title, unitprice, seller_id, recipe) values(1, '2018-11-01', 'includes meat', 1, 'Meat Offer',  10, 1, "");
-insert into offer(offer_id, createddate, description, quantity, title, unitprice, seller_id, recipe) values(2, '2018-11-02', 'includes vegi', 1, 'Vegi Offer',  5, 1, "");
-insert into offer(offer_id, createddate, description, quantity, title, unitprice, seller_id, recipe) values(3, '2018-11-03', 'includes egg', 1, 'Egg Offer',  3, 1, "RECIPE");
+insert into offer(offer_id, createddate, description, quantity, title, unitprice, seller_id, recipe, image_file) values(1, '2018-11-01', 'includes meat', 1, 'Meat Offer',  10, 1, "RECIPE 1", "steak.jpg");
+insert into offer(offer_id, createddate, description, quantity, title, unitprice, seller_id, recipe, image_file) values(2, '2018-11-02', 'includes vegi', 1, 'Vegi Offer',  5, 1, "RECIPE 2", "salad.jpeg");
+insert into offer(offer_id, createddate, description, quantity, title, unitprice, seller_id, recipe, image_file) values(3, '2018-11-03', 'includes egg', 1, 'Egg Offer',  3, 1, "RECIPE 3", , "tahchin.jpg");
 
 insert into food_offer(offer_id, food_id) values(1, 1);
 insert into food_offer(offer_id, food_id) values(2, 2);

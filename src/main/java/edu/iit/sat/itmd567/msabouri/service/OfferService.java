@@ -50,6 +50,8 @@ public class OfferService extends AbstractService<Offer> {
     public void create(Offer offer, String username) {
         Seller seller = sellerSvc.findByUserName(username);
         offer.setSeller(seller);
+        String imageName = uploadedFile.getSubmittedFileName();
+        offer.setImageFile(imageName);
         super.create(offer);
         
         String filename = Long.toString(offer.getOfferId());

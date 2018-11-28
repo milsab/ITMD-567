@@ -58,4 +58,16 @@ body {
     width: 50px;
 }
 
+.offerImage{
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
+    float: left;
+    margin-right: 20px;
+}
+
+.offerLabels{
+    font-weight: bold;
+}
+
 
