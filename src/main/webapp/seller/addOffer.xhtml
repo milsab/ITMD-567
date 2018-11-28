@@ -53,11 +53,7 @@
             <br/>
             <h:commandButton action="#{offerService.create(offerController.offer, loginController.remoteUser)}"                             
                              class="btn btn-primary btn-lg btn-block" 
-                             value="Submit"
-                             onclick="PF('dlg1').show();" >
-                <p:dialog header="Succeed" widgetVar="dlg1" minHeight="-100">
-                    <h:outputText value="Offer Submitted Successfully!" />
-                </p:dialog>
+                             value="Submit" >                
             </h:commandButton>
 
         </h:form>

@@ -35,20 +35,17 @@
                 <br/>
                 <h:outputLabel class="offerLabels">Quantity:&nbsp;</h:outputLabel>
                 <h:outputText value="#{offer.quantity}"/>
-                
-                
+                                
                 <br/>
                 <h:form>
-                    <h:inputText  value="#{buyerController.qty}" 
+                    <h:outputText value="qty: "/>
+                    <h:inputText  value="#{offer.qty}" 
                                   binding="#{qyt}"
                                   class=" qyt" id="qyt"></h:inputText>
-                    <f:facet name="header"><h:outputText value="Quantity"/></f:facet>
-                    <h:message for="recipe" errorClass="text-danger"/>
-                </h:form>
-
-                <h:form>
-                    <h:commandLink action="#{buyerController.doAddOrder(offer, buyerController.qty)}" 
-                                   class="btn btn-primary" value="Order"/>                    
+                    
+                    <h:message for="qyt" errorClass="text-danger"/>
+                    <h:commandLink action="#{buyerController.doAddOrder(offer)}" 
+                                   class="btn btn-primary" value="Order"/>
                 </h:form>
             </p:tab>
         </p:accordionPanel>

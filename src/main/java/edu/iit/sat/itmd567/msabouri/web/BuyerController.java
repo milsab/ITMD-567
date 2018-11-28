@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.iit.sat.itmd567.msabouri.web;
 
 import edu.iit.sat.itmd567.msabouri.domain.Buyer;
@@ -28,7 +23,7 @@ import javax.inject.Named;
  * @author Milad
  */
 @Named
-@SessionScoped
+@ViewScoped
 public class BuyerController extends AbstractController implements Serializable{
 
     private static final Logger LOG = Logger.getLogger(BuyerController.class.getName());
@@ -57,14 +52,16 @@ public class BuyerController extends AbstractController implements Serializable{
     }
        
     // action methods here
-    public String doAddOrder(Offer offer, String qty){
+    public String doAddOrder(Offer offer){
+//        int qty = Integer.parseInt(offer.getQty());
+        Integer qtyy = offer.getQty();
         BigDecimal price = 
-                new BigDecimal(1 * (offer.getUnitPrice().intValue()));
+                new BigDecimal(qtyy * (offer.getUnitPrice().intValue()));
         this.order.setOrderDate(new Date());
         this.order.setBuyer(buyer);
         this.order.setOffer(offer);
         this.order.setPrice(price);
-//        this.order.setQuantity(qyt);
+        this.order.setQuantity(qtyy);
         
         orderSvc.create(order);
         

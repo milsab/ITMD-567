@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.iit.sat.itmd567.msabouri.domain;
 
 import java.math.BigDecimal;
@@ -25,6 +20,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
@@ -47,6 +43,10 @@ import javax.validation.constraints.PastOrPresent;
 public class Offer {
 
     private static final Logger LOG = Logger.getLogger(Offer.class.getName());
+
+    public static Logger getLOG() {
+        return LOG;
+    }
 
     // <editor-fold desc="Attributes">
     @Id
@@ -84,11 +84,15 @@ public class Offer {
     
     @Column(name = "image_file")
     private String imageFile;
+    
+    @Transient
+    private Integer qty;
 
     
     // </editor-fold>
     public Offer() {
         this.createdDate = new Date();
+        this.qty = new Integer(0);
     }
 
     public Offer(String title, String description, Date createdDate, BigDecimal unitPrice, Integer quantity, String recipe, String imageFile) {
@@ -238,5 +242,13 @@ public class Offer {
 
     public void setImageFile(String imageFile) {
         this.imageFile = imageFile;
+    }
+
+    public Integer getQty() {
+        return qty;
+    }
+
+    public void setQty(Integer qty) {
+        this.qty = qty;
     }
 }
