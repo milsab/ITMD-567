@@ -13,53 +13,9 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:dataTable value="#{offerService.findAll('s')}" 
-                     var="offer"
-                     styleClass="table table-striped table-hover">
-            <h:column>
-                <h:outputText value="#{offer.offerId}"/>
-                <f:facet name="header"><h:outputText value="ID"/></f:facet>
-            </h:column>
-            <h:column>
-                <h:outputText value="#{offer.title}"/>
-                <f:facet name="header"><h:outputText value="Title"/></f:facet>
-            </h:column>
-            <h:column>
-                <h:outputText value="#{offer.description}"/>
-                <f:facet name="header"><h:outputText value="Description"/></f:facet>
-            </h:column>
-            <h:column>
-                <h:outputText value="#{offer.createdDate}"/>
-                <f:facet name="header"><h:outputText value="Created Date"/></f:facet>
-            </h:column>
-            <h:column>
-                <h:outputText value="#{offer.unitPrice}"/>
-                <f:facet name="header"><h:outputText value="Unit Price"/></f:facet>
-            </h:column>
-            <h:column>
-                <h:outputText value="#{offer.quantity}"/>
-                <f:facet name="header"><h:outputText value="Available Quantity"/></f:facet>
-            </h:column>
+        
 
-            <h:column>
-                <h:form>
-                    <h:inputText  value="#{buyerController.qty}" 
-                                  binding="#{qyt}"
-                                  class="form-control qyt" id="qyt"></h:inputText>
-                    <f:facet name="header"><h:outputText value="Quantity"/></f:facet>
-                    <c:set var="qtyy" value="#{orderController.order.quantity}"></c:set>
-                </h:form>
-
-            </h:column>
-            <h:column>
-                <h:form>
-                    <h:commandLink action="#{buyerController.doAddOrder(offer)}" class="btn btn-primary" value="Order"/>                    
-                </h:form>
-            </h:column>
-
-        </h:dataTable>
-
-        <p:accordionPanel value="#{offerService.findAll('s')}"
+        <p:accordionPanel value="#{offerService.findAll()}"
                           var ="offer">
             <p:tab title="#{offer.title}">
                 <h:graphicImage library="images" name="#{offer.imageFile}" class="offerImage"/>  
@@ -80,12 +36,20 @@
                 <h:outputLabel class="offerLabels">Quantity:&nbsp;</h:outputLabel>
                 <h:outputText value="#{offer.quantity}"/>
                 
-                <h:outputLabel for="qty">Qty</h:outputLabel>
-                <h:inputText value="#{offerController.offer.recipe}" class="form-control" id="qty"></h:inputText>
-                <h:message for="recipe" errorClass="text-danger"/>
-                <br/>
                 
+                <br/>
+                <h:form>
+                    <h:inputText  value="#{buyerController.qty}" 
+                                  binding="#{qyt}"
+                                  class=" qyt" id="qyt"></h:inputText>
+                    <f:facet name="header"><h:outputText value="Quantity"/></f:facet>
+                    <h:message for="recipe" errorClass="text-danger"/>
+                </h:form>
 
+                <h:form>
+                    <h:commandLink action="#{buyerController.doAddOrder(offer, buyerController.qty)}" 
+                                   class="btn btn-primary" value="Order"/>                    
+                </h:form>
             </p:tab>
         </p:accordionPanel>
     </ui:define>

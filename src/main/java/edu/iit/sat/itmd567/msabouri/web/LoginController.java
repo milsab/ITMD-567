@@ -1,12 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.iit.sat.itmd567.msabouri.web;
 
+import edu.iit.sat.itmd567.msabouri.domain.Buyer;
+import edu.iit.sat.itmd567.msabouri.domain.Seller;
+import edu.iit.sat.itmd567.msabouri.domain.security.Group;
+import edu.iit.sat.itmd567.msabouri.domain.security.User;
+import edu.iit.sat.itmd567.msabouri.service.BuyerService;
+import edu.iit.sat.itmd567.msabouri.service.GroupService;
+import edu.iit.sat.itmd567.msabouri.service.SellerService;
+import edu.iit.sat.itmd567.msabouri.service.UserService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -24,17 +28,36 @@ import javax.validation.constraints.NotBlank;
 public class LoginController extends AbstractController {
 
     private static final Logger LOG = Logger.getLogger(LoginController.class.getName());
-    
+
     @NotBlank(message = "You must enter a Username")
     private String username;
     @NotBlank(message = "You must enter a Password")
     private String password;
+    
+    @NotBlank(message = "You must enter your first name")
+    private String firstName;
+    @NotBlank(message = "You must enter your last name")
+    private String lastName;
+    
+    private String birthday;
+    private String gender;
+    private String group;
+    
+
+    @EJB
+    private UserService userSvc;
+    @EJB
+    private GroupService groupSvc;
+    @EJB
+    private BuyerService buyerSvc;
+    @EJB
+    private SellerService sellerService;
 
     public LoginController() {
     }
-    
+
     //action methods
-    public String doLogin(){
+    public String doLogin() {
         try {
             HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
             req.login(username, username);
@@ -45,8 +68,8 @@ public class LoginController extends AbstractController {
             return "/login";
         }
     }
-    
-    public String doLogout(){
+
+    public String doLogout() {
         try {
             HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
             req.logout();
@@ -57,8 +80,26 @@ public class LoginController extends AbstractController {
 
         return "/login?faces-redirect=true";
     }
-    
-    
+
+//    public String doSignUp(LoginController loginController) {
+//        Group group = groupSvc.findByGroupName(this.group);
+//        User newUser = new User(username, password, true);
+//        newUser.addGroup(group);
+//        userSvc.create(newUser);
+//        
+//        if(group.getGroupName().equals("BUYER")){
+//            Buyer buyer = new Buyer(firstName, lastName, gender, null);
+//            buyer.setUser(newUser);
+//            buyerSvc.create(buyer);
+//        } else if (group.getGroupName().equals("SELLER")){
+//            Seller seller = new Seller(firstName, lastName, gender, null);
+//            seller.setUser(newUser);
+//            sellerService.create(seller);
+//        }
+//        
+//        return "/login";
+//    }
+
     // helper methods for login process
     public String getRemoteUser() {
         return context.getExternalContext().getRemoteUser();
@@ -94,7 +135,6 @@ public class LoginController extends AbstractController {
         this.username = username;
     }
 
-
     /**
      * Get the value of password
      *
@@ -111,6 +151,46 @@ public class LoginController extends AbstractController {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 
 }

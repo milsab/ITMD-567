@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -27,16 +28,15 @@ import javax.inject.Named;
  * @author Milad
  */
 @Named
-@RequestScoped
+@SessionScoped
 public class BuyerController extends AbstractController implements Serializable{
 
     private static final Logger LOG = Logger.getLogger(BuyerController.class.getName());
     
     private Buyer buyer;
     private OrderFood order;
-    
-    @EJB
     private String qty;
+    
     
     @EJB
     private BuyerService buyerSvc;
@@ -46,6 +46,7 @@ public class BuyerController extends AbstractController implements Serializable{
 
     @Inject
     private LoginController loginController;
+
     
     @PostConstruct
     private void postConstructor(){
@@ -53,20 +54,10 @@ public class BuyerController extends AbstractController implements Serializable{
         LOG.info("Inside BuyerController postConstructor");        
         buyer = buyerSvc.findByUserName(loginController.getRemoteUser());
         order = new OrderFood();
-        qty = new String();
     }
-    
-    // helper method
-//    public String getShowDiscJockeysFormatted(RadioShow show){
-//        List<String> names = new ArrayList<>();
-//        for(DiscJockey dj : show.getDiscJockeys()){
-//            names.add(dj.getName());
-//        }
-//        return String.join(",", names);
-//    }
-    
+       
     // action methods here
-    public void doAddOrder(Offer offer){
+    public void doAddOrder(Offer offer, String qty){
         BigDecimal price = 
                 new BigDecimal(1 * (offer.getUnitPrice().intValue()));
         this.order.setOrderDate(new Date());
@@ -74,7 +65,6 @@ public class BuyerController extends AbstractController implements Serializable{
         this.order.setOffer(offer);
         this.order.setPrice(price);
 //        this.order.setQuantity(qyt);
-        
         
         orderSvc.create(order);
         

@@ -21,7 +21,9 @@
                 <f:facet name="header"><h:outputText value="ID"/></f:facet>
             </h:column>
             <h:column>
-                <h:outputText value="#{order.orderDate}"/>
+                <h:outputText value="#{order.orderDate}">
+                    <f:convertDateTime type="date" dateStyle="long"/>
+                </h:outputText>
                 <f:facet name="header"><h:outputText value="Date"/></f:facet>
             </h:column>
             <h:column>
@@ -35,6 +37,10 @@
             <h:column>
                 <h:outputText value="#{order.price}"/>
                 <f:facet name="header"><h:outputText value="Price"/></f:facet>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{order.offer.seller.firstName }"/>
+                <f:facet name="header"><h:outputText value="Cook"/></f:facet>
             </h:column>
         </h:dataTable>
     </ui:define>

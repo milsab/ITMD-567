@@ -25,7 +25,8 @@ public class OfferService extends AbstractService<Offer> {
     @EJB
     private SellerService sellerSvc;
 
-   private Part uploadedFile;
+    private Part uploadedFile;
+
     /**
      *
      */
@@ -33,12 +34,10 @@ public class OfferService extends AbstractService<Offer> {
         super(Offer.class);
     }
 
-    @Override
-    public List<Offer> findAll(String s) {
-        return getEntityManager()
-                .createNamedQuery("Offer.findAll", Offer.class)
-                .getResultList();
-    }
+//    @Override
+//    public List<Offer> findAll(String s) {
+//
+//    }
 
     public List<Offer> findByUserName(String username) {
         return getEntityManager()
@@ -46,14 +45,14 @@ public class OfferService extends AbstractService<Offer> {
                 .setParameter("username", username)
                 .getResultList();
     }
-    
+
     public void create(Offer offer, String username) {
         Seller seller = sellerSvc.findByUserName(username);
         offer.setSeller(seller);
         String imageName = uploadedFile.getSubmittedFileName();
         offer.setImageFile(imageName);
         super.create(offer);
-        
+
         String filename = Long.toString(offer.getOfferId());
         FileUploadController imageFile = new FileUploadController();
         imageFile.setUploadedFile(uploadedFile);
@@ -62,7 +61,9 @@ public class OfferService extends AbstractService<Offer> {
 
     @Override
     public List<Offer> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return getEntityManager()
+                .createNamedQuery("Offer.findAll", Offer.class)
+                .getResultList();
     }
 
     public Part getUploadedFile() {

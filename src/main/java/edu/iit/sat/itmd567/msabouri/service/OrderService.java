@@ -31,9 +31,5 @@ public class OrderService extends AbstractService<OrderFood> {
         return getEntityManager().createNamedQuery("Order.findByUsername", OrderFood.class).setParameter("username", username).getResultList();
     }
 
-    @Override
-    public List<OrderFood> findAll(String s) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }
