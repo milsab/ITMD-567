@@ -81,25 +81,6 @@ public class LoginController extends AbstractController {
         return "/login?faces-redirect=true";
     }
 
-//    public String doSignUp(LoginController loginController) {
-//        Group group = groupSvc.findByGroupName(this.group);
-//        User newUser = new User(username, password, true);
-//        newUser.addGroup(group);
-//        userSvc.create(newUser);
-//        
-//        if(group.getGroupName().equals("BUYER")){
-//            Buyer buyer = new Buyer(firstName, lastName, gender, null);
-//            buyer.setUser(newUser);
-//            buyerSvc.create(buyer);
-//        } else if (group.getGroupName().equals("SELLER")){
-//            Seller seller = new Seller(firstName, lastName, gender, null);
-//            seller.setUser(newUser);
-//            sellerService.create(seller);
-//        }
-//        
-//        return "/login";
-//    }
-
     // helper methods for login process
     public String getRemoteUser() {
         return context.getExternalContext().getRemoteUser();

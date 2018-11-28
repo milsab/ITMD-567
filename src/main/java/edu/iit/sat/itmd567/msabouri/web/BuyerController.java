@@ -57,7 +57,7 @@ public class BuyerController extends AbstractController implements Serializable{
     }
        
     // action methods here
-    public void doAddOrder(Offer offer, String qty){
+    public String doAddOrder(Offer offer, String qty){
         BigDecimal price = 
                 new BigDecimal(1 * (offer.getUnitPrice().intValue()));
         this.order.setOrderDate(new Date());
@@ -68,7 +68,7 @@ public class BuyerController extends AbstractController implements Serializable{
         
         orderSvc.create(order);
         
-        
+        return "/buyer/order?faces-redirect=true";
     }
 
     /**

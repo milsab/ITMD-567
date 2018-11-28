@@ -46,7 +46,7 @@ public class OfferService extends AbstractService<Offer> {
                 .getResultList();
     }
 
-    public void create(Offer offer, String username) {
+    public String create(Offer offer, String username) {
         Seller seller = sellerSvc.findByUserName(username);
         offer.setSeller(seller);
         String imageName = uploadedFile.getSubmittedFileName();
@@ -57,6 +57,7 @@ public class OfferService extends AbstractService<Offer> {
         FileUploadController imageFile = new FileUploadController();
         imageFile.setUploadedFile(uploadedFile);
         imageFile.saveFile(filename);
+        return "/seller/offer?faces-redirect=true";
     }
 
     @Override
