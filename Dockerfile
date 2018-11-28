@@ -1,6 +1,4 @@
-# To change this license header, choose License Headers in Project Properties.
-# To change this template file, choose Tools | Templates
-# and open the template in the editor.
-FROM alpine:latest
+FROM oracle/glassfish:5.0
 
-CMD ["/bin/sh"]
+COPY target/MealSharingV2-1.0-SNAPSHOT.war $GLASSFISH_HOME/glassfish/domains/domain1/autodeploy/
+

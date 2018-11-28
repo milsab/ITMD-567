@@ -26,7 +26,9 @@
                 <f:facet name="header"><h:outputText value="Description"/></f:facet>
             </h:column>
             <h:column>
-                <h:outputText value="#{offer.createdDate}"/>
+                <h:outputText value="#{offer.createdDate}">
+                    <f:convertDateTime type="date" dateStyle="long"/>
+                </h:outputText>
                 <f:facet name="header"><h:outputText value="Created Date"/></f:facet>
             </h:column>
             <h:column>
