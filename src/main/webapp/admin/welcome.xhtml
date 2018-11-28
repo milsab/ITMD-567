@@ -2,7 +2,7 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../WEB-INF/template/portalTemplate.xhtml"
+                template="./../WEB-INF/template/FormsTemplate.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
@@ -40,7 +40,15 @@
             <h:column>
                 <h:outputText value="#{offer.unitPrice}"/>
                 <f:facet name="header"><h:outputText value="Unit Price"/></f:facet>
-            </h:column>            
+            </h:column>
+            <h:column>
+                <h:outputText value="#{offer.seller.firstName}"/>
+                <f:facet name="header"><h:outputText value="Owner"/></f:facet>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{offer.seller.user.userName}"/>
+                <f:facet name="header"><h:outputText value="Username"/></f:facet>
+            </h:column>
             
         </h:dataTable>
         <br/>
@@ -61,6 +69,10 @@
             <h:column>
                 <h:outputText value="#{order.offer.title}"/>
                 <f:facet name="header"><h:outputText value="Title"/></f:facet>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{order.buyer.firstName}"/>
+                <f:facet name="header"><h:outputText value="Owner"/></f:facet>
             </h:column>
             <h:column>
                 <h:outputText value="#{order.buyer.user.userName}"/>
