@@ -4,6 +4,7 @@ import edu.iit.sat.itmd567.msabouri.domain.Buyer;
 import edu.iit.sat.itmd567.msabouri.domain.Offer;
 import edu.iit.sat.itmd567.msabouri.domain.OrderFood;
 import edu.iit.sat.itmd567.msabouri.service.BuyerService;
+import edu.iit.sat.itmd567.msabouri.service.OfferService;
 import edu.iit.sat.itmd567.msabouri.service.OrderService;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -13,6 +14,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -24,48 +26,61 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class BuyerController extends AbstractController implements Serializable{
+public class BuyerController extends AbstractController implements Serializable {
 
     private static final Logger LOG = Logger.getLogger(BuyerController.class.getName());
-    
+
     private Buyer buyer;
     private OrderFood order;
     private String qty;
-    
-    
+
     @EJB
     private BuyerService buyerSvc;
-    
+
     @EJB
     private OrderService orderSvc;
+    
+    @EJB
+    private OfferService offerSvc;
 
     @Inject
     private LoginController loginController;
 
-    
     @PostConstruct
-    private void postConstructor(){
+    private void postConstructor() {
         super.postConstruct();
-        LOG.info("Inside BuyerController postConstructor");        
+        LOG.info("Inside BuyerController postConstructor");
         buyer = buyerSvc.findByUserName(loginController.getRemoteUser());
         order = new OrderFood();
     }
-       
+
     // action methods here
-    public String doAddOrder(Offer offer){
-//        int qty = Integer.parseInt(offer.getQty());
+    public String doAddOrder(Offer offer) {
+
         Integer qtyy = offer.getQty();
-        BigDecimal price = 
-                new BigDecimal(qtyy * (offer.getUnitPrice().intValue()));
-        this.order.setOrderDate(new Date());
-        this.order.setBuyer(buyer);
-        this.order.setOffer(offer);
-        this.order.setPrice(price);
-        this.order.setQuantity(qtyy);
-        
-        orderSvc.create(order);
-        
-        return "/buyer/order?faces-redirect=true";
+        if (offer.getQuantity() - qtyy >= 0) {
+            BigDecimal price
+                    = new BigDecimal(qtyy * (offer.getUnitPrice().intValue()));
+            this.order.setOrderDate(new Date());
+            this.order.setBuyer(buyer);
+            this.order.setOffer(offer);
+            this.order.setPrice(price);
+            this.order.setQuantity(qtyy);
+
+            orderSvc.create(order);
+            offer.setQuantity(offer.getQuantity() - qtyy);
+            
+            offerSvc.update(offer);
+
+            return "/buyer/order?faces-redirect=true";
+        } else{
+            context.addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+                    "The Qty not acceptable", 
+                    "Please enter a valid Qty less than total available quantity"));
+            return "#";
+        }
+
     }
 
     /**

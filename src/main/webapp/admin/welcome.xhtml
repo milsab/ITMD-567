@@ -39,11 +39,11 @@
             </h:column>
             <h:column>
                 <h:outputText value="#{offer.unitPrice}"/>
-                <f:facet name="header"><h:outputText value="Unit Price"/></f:facet>
+                <f:facet name="header"><h:outputText value="Unit Price ($)"/></f:facet>
             </h:column>
             <h:column>
                 <h:outputText value="#{offer.seller.firstName}"/>
-                <f:facet name="header"><h:outputText value="Owner"/></f:facet>
+                <f:facet name="header"><h:outputText value="Cook"/></f:facet>
             </h:column>
             <h:column>
                 <h:outputText value="#{offer.seller.user.userName}"/>
@@ -72,7 +72,7 @@
             </h:column>
             <h:column>
                 <h:outputText value="#{order.buyer.firstName}"/>
-                <f:facet name="header"><h:outputText value="Owner"/></f:facet>
+                <f:facet name="header"><h:outputText value="Customer"/></f:facet>
             </h:column>
             <h:column>
                 <h:outputText value="#{order.buyer.user.userName}"/>

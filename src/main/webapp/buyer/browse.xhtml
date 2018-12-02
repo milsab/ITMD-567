@@ -13,42 +13,43 @@
     </ui:define>
 
     <ui:define name="content">
-        
 
-        <p:accordionPanel value="#{offerService.findAll()}"
-                          var ="offer">
-            <p:tab title="#{offer.title}">
-                <h:graphicImage library="images" name="#{offer.imageFile}" class="offerImage"/>  
-                <h:outputLabel class="offerLabels">ID:&nbsp;</h:outputLabel>
-                <h:outputText value="#{offer.offerId}"/>
-                <br/>
-                <h:outputLabel class="offerLabels">Description:&nbsp;</h:outputLabel>
-                <h:outputText value="#{offer.description}"/>
-                <br/>
-                <h:outputLabel class="offerLabels">Created Date:&nbsp;</h:outputLabel>
-                <h:outputText value="#{offer.createdDate}">
-                    <f:convertDateTime type="date" dateStyle="long"/>
-                </h:outputText>
-                <br/>
-                <h:outputLabel class="offerLabels">Unit Price:&nbsp;</h:outputLabel>
-                <h:outputText value="#{offer.unitPrice}"/>
-                <br/>
-                <h:outputLabel class="offerLabels">Quantity:&nbsp;</h:outputLabel>
-                <h:outputText value="#{offer.quantity}"/>
-                                
-                <br/>
-                <h:form>
+        <h:form enctype="multipart/form-data"  prependId="false">
+            <p:accordionPanel value="#{offerService.findAll()}"
+                              var ="offer">
+                <p:tab title="#{offer.title}">
+                    <h:graphicImage library="images" name="#{offer.imageFile}" class="offerImage"/>  
+                    <h:outputLabel class="offerLabels">ID:&nbsp;</h:outputLabel>
+                    <h:outputText value="#{offer.offerId}"/>
+                    <br/>
+                    <h:outputLabel class="offerLabels">Description:&nbsp;</h:outputLabel>
+                    <h:outputText value="#{offer.description}"/>
+                    <br/>
+                    <h:outputLabel class="offerLabels">Created Date:&nbsp;</h:outputLabel>
+                    <h:outputText value="#{offer.createdDate}">
+                        <f:convertDateTime type="date" dateStyle="long"/>
+                    </h:outputText>
+                    <br/>
+                    <h:outputLabel class="offerLabels">Unit Price:&nbsp;$</h:outputLabel>
+                    <h:outputText value="#{offer.unitPrice}"/>
+                    <br/>
+                    <h:outputLabel class="offerLabels">Quantity:&nbsp;</h:outputLabel>
+                    <h:outputText value="#{offer.quantity}"/>
+
+                    <br/>
+
                     <h:outputText value="qty: "/>
                     <h:inputText  value="#{offer.qty}" 
                                   binding="#{qyt}"
                                   class=" qyt" id="qyt"></h:inputText>
-                    
+
                     <h:message for="qyt" errorClass="text-danger"/>
                     <h:commandLink action="#{buyerController.doAddOrder(offer)}" 
                                    class="btn btn-primary" value="Order"/>
-                </h:form>
-            </p:tab>
-        </p:accordionPanel>
+
+                </p:tab>
+            </p:accordionPanel>
+        </h:form>
     </ui:define>
 
 </ui:composition>
