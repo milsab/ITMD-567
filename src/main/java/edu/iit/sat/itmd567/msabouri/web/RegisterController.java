@@ -9,6 +9,7 @@ import edu.iit.sat.itmd567.msabouri.service.EmailService;
 import edu.iit.sat.itmd567.msabouri.service.GroupService;
 import edu.iit.sat.itmd567.msabouri.service.SellerService;
 import edu.iit.sat.itmd567.msabouri.service.UserService;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -22,6 +23,8 @@ import javax.validation.constraints.NotBlank;
 @Named
 @RequestScoped
 public class RegisterController extends AbstractController {
+
+    private static final Logger LOG = Logger.getLogger(RegisterController.class.getName());
     @NotBlank(message = "You must enter a Username")
     private String username;
     @NotBlank(message = "You must enter a Password")
@@ -72,8 +75,13 @@ public class RegisterController extends AbstractController {
         return "/login?faces-redirect=true";
     }
     
+    //Making a seprate thread for sending the email notification
     public void sendEmail(){
-        EmailService.send(email, username, password);
+        EmailService emailSvc = new EmailService(email, username, password, firstName, lastName);
+        Thread th = new Thread(emailSvc);
+        LOG.info("Starting a new thread to send the email..");
+        th.start();
+        LOG.info("The email was sent successfully");
     }
 
     public String getUsername() {
