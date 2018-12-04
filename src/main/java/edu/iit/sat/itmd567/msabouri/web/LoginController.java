@@ -5,6 +5,7 @@ import edu.iit.sat.itmd567.msabouri.domain.Seller;
 import edu.iit.sat.itmd567.msabouri.domain.security.Group;
 import edu.iit.sat.itmd567.msabouri.domain.security.User;
 import edu.iit.sat.itmd567.msabouri.service.BuyerService;
+import edu.iit.sat.itmd567.msabouri.service.EmailService;
 import edu.iit.sat.itmd567.msabouri.service.GroupService;
 import edu.iit.sat.itmd567.msabouri.service.SellerService;
 import edu.iit.sat.itmd567.msabouri.service.UserService;
@@ -60,8 +61,8 @@ public class LoginController extends AbstractController {
     public String doLogin() {
         try {
             HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-            req.login(username, username);
-            return "/welcome?faces-redirect=true";
+            req.login(username, username);            
+            return "/welcome?faces-redirect=true";            
         } catch (ServletException ex) {
             LOG.log(Level.SEVERE, null, ex);
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Faild", "Please check your username or password and try again."));

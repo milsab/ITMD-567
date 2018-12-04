@@ -5,6 +5,7 @@ import edu.iit.sat.itmd567.msabouri.domain.Seller;
 import edu.iit.sat.itmd567.msabouri.domain.security.Group;
 import edu.iit.sat.itmd567.msabouri.domain.security.User;
 import edu.iit.sat.itmd567.msabouri.service.BuyerService;
+import edu.iit.sat.itmd567.msabouri.service.EmailService;
 import edu.iit.sat.itmd567.msabouri.service.GroupService;
 import edu.iit.sat.itmd567.msabouri.service.SellerService;
 import edu.iit.sat.itmd567.msabouri.service.UserService;
@@ -26,12 +27,15 @@ public class RegisterController extends AbstractController {
     @NotBlank(message = "You must enter a Password")
     private String password;
     
-    @NotBlank(message = "You must enter your first name")
+    @NotBlank(message = "You must enter your First Name")
     private String firstName;
-    @NotBlank(message = "You must enter your last name")
+    @NotBlank(message = "You must enter your Last Name")
     private String lastName;
     
     private String birthday;
+    
+    @NotBlank(message = "You must enter your Email")
+    private String email;
     private String gender;
     private String group;
     
@@ -64,8 +68,12 @@ public class RegisterController extends AbstractController {
             seller.setUser(newUser);
             sellerService.create(seller);
         }
-        
+        sendEmail();
         return "/login?faces-redirect=true";
+    }
+    
+    public void sendEmail(){
+        EmailService.send(email, username, password);
     }
 
     public String getUsername() {
@@ -122,5 +130,13 @@ public class RegisterController extends AbstractController {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
