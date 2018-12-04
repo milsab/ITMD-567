@@ -57,8 +57,8 @@ public class EmailService implements Runnable{
                     + "<h3>Dear " + firstName + " " + lastName
                     + "</h3><h2>Thank you for Registering on TAHDIG,</h2>"
                     + "<h3>The First Meal Sharing Platform</h3>"
-                    + "<em>Your Username is: " + username 
-                    + "</em><br/><em>Your Password is: " + userpass
+                    + "<em>Your Username: " + username 
+                    + "</em><br/><em>Your Password: " + userpass
                     + "</em><br/><a href='http://lasalle.sat.iit.edu:8080/MealSharingV2-1.0-SNAPSHOT/'>Click here to go to the TAHDIG service</a></body>", 
                     "text/html; charset=utf8");
             Transport.send(message);
