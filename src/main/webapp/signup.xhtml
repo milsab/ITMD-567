@@ -14,7 +14,7 @@
     <ui:define name="content">
         <h:form class="form-signin">
             <span class="fas fa-utensils fa-5x animated zoomin"></span>
-            <p class="mb-3 font-weight-normal">Create your account. It's free!</p>
+            <h2 class="mb-3 font-weight-normal">Create your account. It's free!</h2>
 
             <h:outputLabel for="fname" class="sr-only" value="First Name"/>
             <h:inputText value="#{registerController.firstName}" id="fname" 
@@ -57,7 +57,7 @@
             <h:commandButton class="btn btn-lg btn-primary btn-block" 
                              value="Sign Up" 
                              action="#{registerController.doSignUp(registerController)}"/>
-            <br/><p>Already have an account?<a href="./login.xhtml">Sign in</a></p>
+            <br/><p>Already have an account? <a href="./login.xhtml">Sign in</a></p>
             <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
         </h:form>
     </ui:define>

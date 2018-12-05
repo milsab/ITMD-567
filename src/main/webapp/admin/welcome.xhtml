@@ -71,6 +71,14 @@
                 <f:facet name="header"><h:outputText value="Title"/></f:facet>
             </h:column>
             <h:column>
+                <h:outputText value="#{order.quantity}"/>
+                <f:facet name="header"><h:outputText value="Quantity"/></f:facet>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{order.price}"/>
+                <f:facet name="header"><h:outputText value="Total Price ($)"/></f:facet>
+            </h:column>
+            <h:column>
                 <h:outputText value="#{order.buyer.firstName}"/>
                 <f:facet name="header"><h:outputText value="Customer"/></f:facet>
             </h:column>

@@ -4,9 +4,9 @@
 */
 
 body {
-  margin: 0px;
-  padding: 0px;
-  /*background-color: yellow;*/
+    margin: 0px;
+    padding: 0px;
+    
 }
 
 /*.starter-template {
@@ -28,7 +28,7 @@ body {
 #HomePageTitle1 {
     font-family: 'Pattaya', sans-serif;
     font-size: 6em;
-    
+
 }
 
 #HomePageTitle2{
