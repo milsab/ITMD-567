@@ -1,13 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.iit.sat.itmd567.msabouri.web;
 
 import edu.iit.sat.itmd567.msabouri.domain.Offer;
+import edu.iit.sat.itmd567.msabouri.domain.Seller;
+import edu.iit.sat.itmd567.msabouri.service.OfferService;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
@@ -23,17 +21,37 @@ public class OfferController {
     
     private Offer offer;
     
+    private Seller seller;
+    
+    @EJB
+    private OfferService offerSvc;
+    
     @PostConstruct
     private void postConstruct(){
         LOG.info("Inside OfferController postConstructor");
+        
         offer = new Offer();
+        
     }
     
     public String executeSaveOffer() {
         LOG.info("Inside OfferController executeSaveOffer");
-        return "/admin/welcome.xhtml";
+        this.offer = offer;
+        this.offer.setSeller(seller);
+        offerSvc.update(this.offer);
+        return "/seller/offer.xhtml";  
     }
     
+    public String doEdit(Offer offer){
+        this.offer = offer;
+        this.seller = offer.getSeller();
+//        offerSvc.remove(offer);
+        return "/seller/editOffer.xhtml";  
+    }
+    
+    public String doUpdate(Offer offer){
+        return "/seller/offer.xhtml";  
+    }
 
     /**
      * Get the value of offer

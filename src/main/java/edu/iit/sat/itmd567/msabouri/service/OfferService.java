@@ -59,6 +59,13 @@ public class OfferService extends AbstractService<Offer> {
         imageFile.saveFile(filename);
         return "/seller/offer?faces-redirect=true";
     }
+    
+    public String update(Offer offer, String username){
+        Seller seller = sellerSvc.findByUserName(username);
+        offer.setSeller(seller);
+        super.update(offer);
+        return "/seller/offer.xhtml";
+    }
 
     @Override
     public List<Offer> findAll() {

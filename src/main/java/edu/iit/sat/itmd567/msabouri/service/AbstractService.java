@@ -40,6 +40,7 @@ public abstract class AbstractService<T> {
     
     public void remove(T entity){
         em.remove(em.merge(entity));
+        em.flush();
     }
     
     public T findById(Object id){

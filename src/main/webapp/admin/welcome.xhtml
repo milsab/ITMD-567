@@ -15,13 +15,51 @@
             Welcome Admin "#{loginController.remoteUser}"
         </h2>
         <br/>
-        <h3>List of Offers:</h3>
+        <h3>List of Cooks:</h3>
+        <h:dataTable value="#{sellerService.findAll()}" 
+                     var="seller"
+                     styleClass="table table-striped table-hover">
+            <h:column>
+                <h:outputText value="#{seller.sellerId}"/>
+                <f:facet name="header"><h:outputText value="ID"/></f:facet>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{seller.firstName}"/>
+                <f:facet name="header"><h:outputText value="First Name"/></f:facet>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{seller.lastName}"/>
+                <f:facet name="header"><h:outputText value="Last Name"/></f:facet>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{seller.birthday}">
+                    <f:convertDateTime type="date" dateStyle="long"/>
+                </h:outputText>
+                <f:facet name="header"><h:outputText value="Birthday"/></f:facet>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{seller.gender}"/>
+                <f:facet name="header"><h:outputText value="Gender"/></f:facet>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{seller.user.userName}"/>
+                <f:facet name="header"><h:outputText value="Username"/></f:facet>
+            </h:column>
+            
+        </h:dataTable>
+        <br/>
+        
+        <h3>List of Offers BY All Cooks:</h3>
         <h:dataTable value="#{offerService.findAll()}" 
                      var="offer"
                      styleClass="table table-striped table-hover">
             <h:column>
                 <h:outputText value="#{offer.offerId}"/>
                 <f:facet name="header"><h:outputText value="ID"/></f:facet>
+            </h:column>
+            <h:column>
+                <h:graphicImage library="images" name="#{offer.imageFile}" class="offerImageTable"/>
+                <f:facet name="header"><h:outputText value=""/></f:facet>
             </h:column>
             <h:column>
                 <h:outputText value="#{offer.createdDate}">
@@ -52,13 +90,52 @@
             
         </h:dataTable>
         <br/>
-        <h3>List of Orders</h3>
+        <hr/>
+        <br/>
+        <h3>List of Customers</h3>
+        <br/>
+        <h:dataTable value="#{buyerService.findAll()}" 
+                     var="buyer"
+                     styleClass="table table-striped table-hover">
+            <h:column>
+                <h:outputText value="#{buyer.buyerId}"/>
+                <f:facet name="header"><h:outputText value="ID"/></f:facet>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{buyer.firstName}"/>
+                <f:facet name="header"><h:outputText value="First Name"/></f:facet>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{buyer.lastName}"/>
+                <f:facet name="header"><h:outputText value="Last Name"/></f:facet>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{buyer.birthday}">
+                    <f:convertDateTime type="date" dateStyle="long"/>
+                </h:outputText>
+                <f:facet name="header"><h:outputText value="Birthday"/></f:facet>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{buyer.gender}"/>
+                <f:facet name="header"><h:outputText value="Gender"/></f:facet>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{buyer.user.userName}"/>
+                <f:facet name="header"><h:outputText value="Username"/></f:facet>
+            </h:column>
+            
+        </h:dataTable>
+        <h3>List of Orders By All Customers</h3>
         <h:dataTable value="#{orderService.findAll()}" 
                      var="order"
                      styleClass="table table-striped table-hover">
             <h:column>
                 <h:outputText value="#{order.orderId}"/>
                 <f:facet name="header"><h:outputText value="ID"/></f:facet>
+            </h:column>
+            <h:column>
+                <h:graphicImage library="images" name="#{order.offer.imageFile}" class="offerImageTable"/>
+                <f:facet name="header"><h:outputText value=""/></f:facet>
             </h:column>
             <h:column>
                 <h:outputText value="#{order.orderDate}">
