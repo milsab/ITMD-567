@@ -30,8 +30,8 @@ public class EmailService implements Runnable{
     }
     
     public void send() {
-        String _from = "meal.sharingservice@gmail.com";
-        String _password = "Ng101840";
+        String _from = "6782DFF45A";
+        String _password = "EC56423FFA7";
         //Get properties object
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
